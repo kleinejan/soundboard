@@ -53,7 +53,7 @@ void setup()
   Serial.println(F("DFPlayer Mini online."));
 
   myDFPlayer.volume(10);  //Set volume value. From 0 to 30
-  myDFPlayer.play(1);  //Play the first mp3
+  myDFPlayer.next();  //Play the first mp3
 }
 
 void loop()
@@ -72,17 +72,17 @@ void loop()
   unsigned int uS = sonar.ping_cm();
   Serial.println("CM:");
   Serial.println(uS);
-  if (uS > 100 && uS < 130 ) {
+  if (uS < 120 ) {
     //    Serial.println(uS);
     //    Serial.println("trigger!");
     if (myDFPlayer.available()) {
       if (myDFPlayer.readType() == 'DFPlayerPlayFinished') {
         myDFPlayer.volume(volume);
-        myDFPlayer.play(4);
+        myDFPlayer.next();
 
       } else {
         myDFPlayer.volume(volume);
-        myDFPlayer.play(4);
+        myDFPlayer.next();
 
       }
     }
