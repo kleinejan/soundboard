@@ -62,28 +62,28 @@ void loop()
   static unsigned long timer = millis();
   static unsigned int volume = map(sensorValue, 0, 1023, 0, 30);
 
-  Serial.println("Volume:");
-  Serial.println(analogRead(sensorPin));
+//  Serial.println("Volume:");
+//  Serial.println(analogRead(sensorPin));
   if (millis() - timer > 1000) {
-    Serial.println("Beep!");
+//    Serial.println("Beep!");
     timer = millis();
 
   }
   unsigned int uS = sonar.ping_cm();
-  Serial.println("CM:");
-  Serial.println(uS);
-  if (uS < 120 ) {
+//  Serial.println("CM:");
+//  Serial.println(uS);
+  if (uS >20 && uS < 180 ) {
     //    Serial.println(uS);
     //    Serial.println("trigger!");
     if (myDFPlayer.available()) {
       if (myDFPlayer.readType() == 'DFPlayerPlayFinished') {
         myDFPlayer.volume(volume);
         myDFPlayer.next();
-
+        delay(10000);
       } else {
         myDFPlayer.volume(volume);
         myDFPlayer.next();
-
+        delay(10000);
       }
     }
   }
